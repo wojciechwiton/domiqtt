@@ -146,6 +146,7 @@ main = function () {
 		// 'int' for tempset in AC
 		if (addressParts[1] === 'regulator' || (addressParts[1] === 'variable' || addressParts[1] === 'int' && nValue > 800 && nValue < 6000)) {
 			mqttClient.publish(topic + '/_c', ((nValue - 1000) / 10).toString(), {retain: true});
+			mqttClient.publish(topic + '/_lx', Math.round(Math.exp(nValue/100)).toString(), {retain: true});
 		}
 	});
 
